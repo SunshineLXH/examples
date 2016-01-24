@@ -36,6 +36,7 @@
             cxt.save();
             cxt.translate(400, 400);
             cxt.rotate(time * 365 / 360 * Math.PI / 180);
+            console.log(time)
             cxt.beginPath();
             cxt.arc(0, -90, 10, 0, 360 * Math.PI / 180, false);
             cxt.closePath();
@@ -45,7 +46,10 @@
             cxt.fillStyle = earthGradient;
             cxt.fill();
             cxt.restore();
-            time += 1;
+            if (time > 365)
+                time = 0;
+            else
+                time += 1;
         }
         setInterval(draw, 100);
     </script>
