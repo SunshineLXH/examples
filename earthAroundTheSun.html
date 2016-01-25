@@ -35,7 +35,7 @@
             //draw earth
             cxt.save();
             cxt.translate(400, 400);
-            cxt.rotate(time * 365 / 360 * Math.PI / 180);
+            cxt.rotate(time * 360 / 365 * Math.PI / 180);
             console.log(time)
             cxt.beginPath();
             cxt.arc(0, -90, 10, 0, 360 * Math.PI / 180, false);
