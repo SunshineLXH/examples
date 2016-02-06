@@ -3,7 +3,7 @@
 
 body{background:#ABCDEF}
 /*header setting*/
-#header{width:800px;height:80px;font-size:45px;margin:0 auto;line-height:80px;text-align:center;border:1px solid pink;}
+#header{width:800px;height:80px;font-size:45px;margin:0 auto;line-height:80px;text-align:center;}
 /*content setting*/
 #content{width:780px;height:550px;background:gray;margin:0 auto;padding:10px;}
 

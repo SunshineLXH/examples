@@ -15,10 +15,12 @@
                 <hr />
                 <ul id="SaveOrRemove">
                     <li>
-                        <button>save image</button>
+                        <form action="http://localhost/down.php" id="form" method="post" target="_blank"></form>
+                        <input type="hidden" name="imgData" id="imgdata" value="" />
+                        <button onclick="save(0)">save image</button>
                     </li>
                     <li>
-                        <button>remove image</button>
+                        <button onclick="clearAll(1)">remove image</button>
                     </li>
                 </ul>
             </li>
@@ -76,6 +78,7 @@
         <canvas id="canvas" width="780px" height="400px" >
             Your browser does not support the canvas tag!
         </canvas>
+        <script src="canvas-onlineDrawingBoard.js"></script>
     </section>
     <footer id="footer">
         <small>All versions, piracy will investigate!</small>
