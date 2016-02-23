@@ -1,7 +1,6 @@
 /**
  * Created by SunshineLXH on 2016/2/19.
  */
-
 //找零问题
 function makeChange(origAmt, coins){
     var remainAmt = 0;
