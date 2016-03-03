@@ -1,0 +1,40 @@
+/*All property setting*/
+*{padding:0;margin:0;list-style:none;}
+
+body{background:#ABCDEF}
+/*header setting*/
+#header{width:800px;height:80px;font-size:45px;margin:0 auto;line-height:80px;text-align:center;}
+/*content setting*/
+#content{width:780px;height:550px;background:gray;margin:0 auto;padding:10px;}
+
+#toolBoxArea{height:150px;text-align:center;}
+#toolBoxArea li{float:left;width:155px;height:140px;background:lightgray;border-right:1px solid darkgray;}
+
+#SaveOrRemove{text-align:left;padding-left:20px;padding:16px;}
+#SaveOrRemove li{height:40px;width:100px;list-style:square inside;border:0;}
+#SaveOrRemove li button{border:1px solid darkgray;}
+
+#toolsImages,#shape{padding:20px;}
+#toolsImages li,#shape li{height:20px;width:30px;margin-left:3px;margin-right:3px;border:1px solid darkgray;margin-bottom:10px;}
+#toolsImages img,#shape img{width:20px;height:20px;}
+
+#LineWidth{padding:10px;}
+#LineWidth li{height:20px;width:130px;border:0;}
+
+#color{padding:20px;}
+#color li{width:20px;height:20px;border:1px solid darkgray;margin-bottom:10px;margin-right:1px;}
+#color #red{background:red;}
+#color #green{background:green;}
+#color #blue{background:blue;}
+#color #yellow{background:yellow;}
+#color #white{background:white;}
+#color #black{background:black;}
+#color #orange{background:orange;}
+#color #brown{background:brown;}
+#color #cyan{background:cyan;}
+#color #purple{background:purple;}
+
+#canvas{background:white;}
+#canvas:hover{cursor:crosshair;}
+
+#footer{width:800px;height:30px;margin:0 auto;text-align:center;}
