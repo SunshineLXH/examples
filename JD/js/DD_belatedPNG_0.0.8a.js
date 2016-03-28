@@ -1,16 +1,3 @@
-/**
-* DD_belatedPNG: Adds IE6 support: PNG images for CSS background-image and HTML <IMG/>.
-* Author: Drew Diller
-* Email: drew.diller@gmail.com
-* URL: http://www.dillerdesign.com/experiment/DD_belatedPNG/
-* Version: 0.0.8a
-* Licensed under the MIT License: http://dillerdesign.com/experiment/DD_belatedPNG/#license
-*
-* Example usage:
-* DD_belatedPNG.fix('.png_bg'); // argument is a CSS selector
-* DD_belatedPNG.fixPng( someNode ); // argument is an HTMLDomElement
-**/
-
 /*
 PLEASE READ:
 Absolutely everything in this script is SILLY.  I know this.  IE's rendering of certain pixels doesn't make sense, so neither does this code!
@@ -45,7 +32,7 @@ var DD_belatedPNG = {
 			this.screenStyleSheet = screenStyleSheet;
 			
 			/* Add a print-media stylesheet, for preventing VML artifacts from showing up in print (including preview). */
-			/* Thanks to Rémi Prévost for automating this! */
+			/* Thanks to RÃ©mi PrÃ©vost for automating this! */
 			printStyleSheet = document.createElement('style');
 			printStyleSheet.setAttribute('media', 'print');
 			document.documentElement.firstChild.insertBefore(printStyleSheet, document.documentElement.firstChild.firstChild);
