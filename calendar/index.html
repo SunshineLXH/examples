@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calendar by SunshineLXH</title>
+    <style>
+        html, body, div, ul, li, h1, h2, h3, table, th, tr, td, button, p, span, input, a, dl {
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        body, th, td {
+            font-family: arial;
+        }
+        .wrap {
+            width: 540px;
+            height: 425px;
+            margin: 20px;
+        }
+
+        /*上面top部分,包括左边选择组件条及右边的当前时间*/
+        .top {
+            height: 40px;
+            background: #F3F5FA;
+            font-size: 12px;
+            position: relative;
+        }
+        .control-bar {
+            float: left;
+            height: 20px;
+            line-height: 20px;
+            padding: 10px 5px;
+            text-align: left;
+        }
+        .control-module {
+            border: 1px solid #c9cccf;
+            height: 18px;
+            line-height: 18px;
+            margin-right: 5px;
+            float: left;
+            position: relative;
+            text-align: left;
+        }
+        .year-control {
+            width: 100px;
+        }
+        .month-control {
+            width: 83px;
+        }
+        .holiday-control {
+            width: 125px;
+            overflow: hidden;
+        }
+        .btn-today {
+            width: 60px;
+        }
+        .time-panel {
+            width: 125px;
+            text-align: left;
+            height: 40px;
+            line-height: 40px;
+            float: right;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        /*下面部分，包括bottom-left, bottom-right*/
+        .bottom {
+            height: 385px;
+        }
+        /*bottom-left部分:固定的dates-head和动态的dates-detail*/
+        .bottom-left {
+            width: 398px;
+            height: 383px;
+            border: 1px solid #D2D2D2;
+            float: left;
+        }
+        .dates-head {
+            height: 39px;
+            border-bottom: 1px solid #F1EBE4;
+        }
+        .day-th {
+            background: #FEFBEB;
+            float: left;
+            width: 56px;
+            font-size: 14px;
+            height: 13px;
+            line-height: 13px;
+            text-align: center;
+            padding: 14px 0 12px;
+            border-right: 1px solid #F1EBE4;
+        }
+        .th-last {
+            border: none;
+        }
+        /*bottom-right部分：b-r-base, b-r-extra, b-r-linktail*/
+        .bottom-right {
+            width: 139px;
+            height: 383px;
+            border: 1px solid #D2D2D2;
+            border-left: none;
+            float: left;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+        .b-r-base {
+            width: 139px;
+            height: 190px;
+            border-bottom: 1px solid #D2D2D2;
+            text-align: center;
+        }
+        .base-dates-bar {
+            width: 123px;
+            margin: 15px auto;
+        }
+        .weekday {
+            padding-left: 6px;
+        }
+        .date-show-panel {
+            font-size: 60px;
+            height: 60px;
+            line-height: 60px;
+            padding: 0 30px;
+            text-align: center;
+            color: #CC0000;
+        }
+        .desc {
+            text-align: left;
+            line-height: 18px;
+        }
+        .b-r-extra {
+            width: 106px;
+            height: 125px;
+            padding-bottom: 20px;
+            margin-left: 14px;
+            margin-right: 14px;
+            border-bottom: 1px dashed #f1ebe4;
+        }
+        .suited, .tapu {
+            padding: 8px 0;
+            width: 50px;
+            height: 150px;
+            float: left;
+            text-align: center;
+        }
+        .suited {
+            margin-right: 2px;
+            color: #B04343;
+        }
+        .st-label {
+            font-size: 12px;
+            margin-bottom: 3px;
+            text-align: center;
+        }
+        .st-items {
+            padding-top: 10px;
+        }
+        .st-items li {
+            padding: 1px 0;
+            width: 48px;
+            height: 18px;
+            line-height: 18px;
+        }
+        .b-r-linktail {
+            text-align: right;
+            margin-top: 5px;
+            padding-right: 10px;
+            width: 129px;
+            height: 18px;
+            line-height: 18px;
+        }
+        .historyday {
+            color: #999;
+        }
+        .clearfix:after {
+            clear: both;
+            content: '';
+            display: block;
+            height: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="top clearfix">
+        <div class="control-bar">
+            <div class="control-module year-control">
+                <a href="" class="mh-prev"></a>
+                <div class="mh-control">
+                    <i class="mh-trigger"></i>
+                    <div class="mh-field mh-year">2016年</div>
+                </div>
+                <a href="" class="mh-next"></a>
+            </div>
+            <div class="control-module control-module month-control mouth-bar">
+                <a href="" class="mh-prev"></a>
+                <div class="mh-control">
+                    <i class="mh-trigger"></i>
+                    <div class="mh-field mh-month">4月</div>
+                </div>
+                <a href="" class="mh-next"></a>
+            </div>
+            <div class="control-module control-module holiday-control holiday-bar">
+                <div class="mh-control">
+                    <i class="mh-trigger"></i>
+                    <div class="mh-field mh-holiday">2016年节假日安排</div>
+                </div>
+                <ul class="mh-list">
+                    <li>元旦</li>
+                    <li>春节</li>
+                    <li>清明</li>
+                    <li>劳动节</li>
+                    <li>端午节</li>
+                    <li>中秋节</li>
+                    <li>国庆节</li>
+                </ul>
+            </div>
+            <div class="control-module btn-today">返回今天</div>
+        </div>
+        <div class="time-panel">
+            <dl class="clearfix">北京时间：&nbsp;<span class="time-monitor"></span></dl>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="bottom-left">
+            <ul class="dates-head clearfix">
+                <li class="day-th">一</li>
+                <li class="day-th">二</li>
+                <li class="day-th">三</li>
+                <li class="day-th">四</li>
+                <li class="day-th">五</li>
+                <li class="day-th weekend">六</li>
+                <li class="day-th weekend th-last">七</li>
+            </ul>
+            <ol class="dates-detail"></ol>
+        </div>
+        <div class="bottom-right">
+            <div class="b-r-base">
+                <div class="base-dates-bar">
+                    <span class="date"></span>
+                    <span class="weekday"></span>
+                </div>
+                <div class="date-show-panel"></div>
+                <div class="desc">
+                    <div class="lunar"></div>
+                    <div class="lunar-ganzhi"></div>
+                    <div class="other-info">
+                        <span class="animal-year"></span>
+                        <span class="astro"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="b-r-extra clearfix">
+                <div class="suited">
+                    <h3 class="st-label">宜</h3>
+                    <ul class="st-items clearfix">
+                        <li>祭祀</li>
+                        <li>作灶</li>
+                        <li>畋猎</li>
+                        <li>结网</li>
+                        <li class="cl">修饰垣墙</li>
+                    </ul>
+                </div>
+                <div class="tapu">
+                    <h3 class="st-label">忌</h3>
+                    <ul class="st-items clearfix">
+                        <li>嫁娶</li>
+                        <li>安床</li>
+                        <li class="cl">治病</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="b-r-linktail">
+                <a class="historyday" href="" target="_blank">历史上的今天</a>
+            </div>
+            <div class="goupiao"></div>
+        </div>
+    </div>
+</div>
+<script src="calendar.js"></script>
+</body>
+</html>
