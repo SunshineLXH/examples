@@ -112,6 +112,7 @@ var sFtv = new Array(
     "1024 联合国日",
     "1224 平安夜",
     "1225 圣诞节");
+
 //农历节日
 var lFtv = new Array(
     "0101 春节",
@@ -131,6 +132,7 @@ function lYearDays(y) {
     for (i = 0x8000; i > 0x8; i >>= 1) sum += (lunarInfo[y - 1900] & i) ? 1 : 0;
     return (sum + leapDays(y));
 }
+
 //返回农历y年闰月的天数
 function leapDays(y) {
     if (leapMonth(y)) return ((lunarInfo[y - 1900] & 0x10000) ? 30 : 29);
@@ -183,6 +185,7 @@ function Dianaday(objDate) {
     this.month = i;
     this.day = offset + 1;
 }
+
 //返回公历y年m+1月的天数
 function solarDays(y, m) {
     if (m == 1)
@@ -190,6 +193,7 @@ function solarDays(y, m) {
     else
         return (solarMonth[m]);
 }
+
 //记录公历和农历某天的日期
 function calElement(sYear, sMonth, sDay, week, lYear, lMonth, lDay, isLeap) {
     this.isToday = false;
@@ -208,11 +212,13 @@ function calElement(sYear, sMonth, sDay, week, lYear, lMonth, lDay, isLeap) {
     this.solarFestival = ''; //公历节日
     this.solarTerms = ''; //节气
 }
+
 //返回某年的第n个节气为几日(从0小寒起算)
 function sTerm(y, n) {
     var offDate = new Date((31556925974.7 * (y - 1900) + sTermInfo[n] * 60000) + Date.UTC(1900, 0, 6, 2, 5));
     return (offDate.getUTCDate())
 }
+
 //保存y年m+1月的相关信息
 var fat = mat = 9;
 var eve = 0;
@@ -254,6 +260,7 @@ function calendar(y, m) {
         this[12].solarFestival += '黑色星期五';
     if (y == tY && m == tM) this[tD - 1].isToday = true;    //今日
 }
+
 //用中文显示农历的日期
 function cDay(d) {
     var s;

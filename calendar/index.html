@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <title>calendar by SunshineLXH</title>
     <style>
-        html, body, div, ul, li, h1, h2, h3, table, th, tr, td, button, p, span, input, a, dl {
+        html, body, div, ul, li, h1, h2, h3, td, button, p, span, input, a, dl {
             margin: 0;
             padding: 0;
         }
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-        ul {
+        ul, li {
             list-style: none;
         }
         a {
@@ -43,25 +39,107 @@
         }
         .control-module {
             border: 1px solid #c9cccf;
-            height: 18px;
-            line-height: 18px;
+            height: 20px;
+            line-height: 20px;
             margin-right: 5px;
             float: left;
             position: relative;
             text-align: left;
+            background-color: #FDFDFD;
         }
+        .prev, .next {
+            width: 15px;
+            height: 20px;
+            line-height: 20px;
+            float: left;
+            text-align: left;
+            position: relative;
+        }
+        .prev {
+            left: 3px;
+        }
+        .next {
+            right: -5px;
+        }
+        .trigger {
+            width: 15px;
+            height: 12px;
+            line-height: 12px;
+            font-size: 12px;
+            float: right;
+            margin-top: -4px;
+            margin-right: -10px;
+            text-align: left;
+            color: #C0C0C0;
+        }
+        .year {
+            width: 43px;
+        }
+        .month {
+            width: 26px;
+        }
+        .holiday {
+            width: 88px;
+        }
+        .list {
+            display: none;
+            color: #9A9A9A;
+            height: 169px;
+            left: -1px;
+            line-height: 20px;
+            font-size: 12px;
+            position: absolute;
+            text-align: center;
+            top: 20px;
+            width: 125px;
+            z-index: 99;
+            zoom: 1;
+            background: #FFFFFF;
+            border: 1px solid #C9CCCF;
+            border-top: none;
+        }
+        .list li {
+            margin-bottom: 1px;
+        }
+        .list li:hover {
+            background: #77A1B4;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+        .field {
+            cursor: pointer;
+            float: left;
+            text-align: left;
+        }
+        .control {
+            padding: 4px 10px 0;
+            border-left: 1px solid #C9CCCF;
+            border-right: 1px solid #C9CCCF;
+            float: left;
+            height: 12px;
+            line-height: 12px;
+            white-space: nowrap;
+        }
+
         .year-control {
             width: 100px;
         }
+
         .month-control {
             width: 83px;
         }
         .holiday-control {
             width: 125px;
-            overflow: hidden;
+            zoom: 1;
+        }
+        .control-holiday {
+            border: none;
         }
         .btn-today {
             width: 60px;
+            cursor: pointer;
+            text-align: center;
+            white-space: nowrap;
         }
         .time-panel {
             width: 125px;
@@ -137,13 +215,25 @@
         .desc {
             text-align: left;
             line-height: 18px;
+            height: 61px;
+            color: #999999;
+        }
+        .lunar, .lunar-ganzhi, .other-info {
+            text-align: center;
+        }
+        .lunar {
+            height: 25px;
+            line-height: 25px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .b-r-extra {
             width: 106px;
             height: 125px;
             padding-bottom: 20px;
-            margin-left: 14px;
-            margin-right: 14px;
+            margin: 0 14px;
             border-bottom: 1px dashed #f1ebe4;
         }
         .suited, .tapu {
@@ -164,12 +254,16 @@
         }
         .st-items {
             padding-top: 10px;
+            width: 50px;
         }
         .st-items li {
             padding: 1px 0;
             width: 48px;
             height: 18px;
             line-height: 18px;
+        }
+        .st-items .cl {
+            clear: both;
         }
         .b-r-linktail {
             text-align: right;
@@ -196,27 +290,28 @@
     <div class="top clearfix">
         <div class="control-bar">
             <div class="control-module year-control">
-                <a href="" class="mh-prev"></a>
-                <div class="mh-control">
-                    <i class="mh-trigger"></i>
-                    <div class="mh-field mh-year">2016年</div>
+                <a href="" class="prev"><</a>
+                <div class="control">
+                    <i class="trigger"></i>
+                    <div class="field year">2016年</div>
                 </div>
-                <a href="" class="mh-next"></a>
+                <a href="" class="next">></a>
             </div>
             <div class="control-module control-module month-control mouth-bar">
-                <a href="" class="mh-prev"></a>
-                <div class="mh-control">
-                    <i class="mh-trigger"></i>
-                    <div class="mh-field mh-month">4月</div>
+                <a href="" class="prev"><</a>
+                <div class="control">
+                    <i class="trigger"></i>
+                    <div class="field month">4月</div>
                 </div>
-                <a href="" class="mh-next"></a>
+                <a href="" class="next">></a>
             </div>
             <div class="control-module control-module holiday-control holiday-bar">
-                <div class="mh-control">
-                    <i class="mh-trigger"></i>
-                    <div class="mh-field mh-holiday">2016年节假日安排</div>
+                <div class="control control-holiday">
+                    <i class="trigger"></i>
+                    <div class="field holiday">2016年节假日安排</div>
                 </div>
-                <ul class="mh-list">
+                <ul class="list">
+                    <li>2016年假日安排</li>
                     <li>元旦</li>
                     <li>春节</li>
                     <li>清明</li>
@@ -256,7 +351,11 @@
                     <div class="lunar"></div>
                     <div class="lunar-ganzhi"></div>
                     <div class="other-info">
-                        <span class="animal-year"></span>
+                        <span class="animal-year">
+                            [
+                            <em class="animal"></em>
+                            ]
+                        </span>
                         <span class="astro"></span>
                     </div>
                 </div>
@@ -265,19 +364,19 @@
                 <div class="suited">
                     <h3 class="st-label">宜</h3>
                     <ul class="st-items clearfix">
-                        <li>祭祀</li>
-                        <li>作灶</li>
-                        <li>畋猎</li>
-                        <li>结网</li>
-                        <li class="cl">修饰垣墙</li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li class="cl"></li>
                     </ul>
                 </div>
                 <div class="tapu">
                     <h3 class="st-label">忌</h3>
                     <ul class="st-items clearfix">
-                        <li>嫁娶</li>
-                        <li>安床</li>
-                        <li class="cl">治病</li>
+                        <li></li>
+                        <li></li>
+                        <li class="cl"></li>
                     </ul>
                 </div>
             </div>
