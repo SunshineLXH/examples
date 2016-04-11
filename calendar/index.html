@@ -67,10 +67,10 @@
             line-height: 12px;
             font-size: 12px;
             float: right;
-            margin-top: -4px;
             margin-right: -10px;
             text-align: left;
             color: #C0C0C0;
+            cursor: pointer;
         }
         .year {
             width: 43px;
@@ -119,10 +119,14 @@
             height: 12px;
             line-height: 12px;
             white-space: nowrap;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .year-control {
             width: 100px;
+            cursor: pointer;
         }
 
         .month-control {
@@ -333,6 +337,56 @@
         .red {
             color: red;
         }
+        .listUl1, .listUl2, .listUl3 {
+            -display: none;
+            background: #fff;
+            border: 1px solid #C9CCCF;
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            height: 169px;
+            text-align: center;
+            line-height: 20px;
+            overflow: auto;
+            border-top: none;
+            word-break: break-all;
+            z-index: 200;
+        }
+        .listUl1 li, .listUl2 li, .listUl3 li {
+            height: 20px;
+            color: #999999;
+        }
+        .listUl1 {
+            width: 68px;
+        }
+        .listUl1 li {
+            cursor: pointer;
+        }
+        .listUl1 li:hover {
+            background: #77A1B4;
+        }
+
+        .listUl2 {
+            width: 51px;
+        }
+        .listUl2 li {
+            cursor: pointer;
+        }
+        .listUl2 li:hover {
+            background: #77A1B4;
+        }
+
+        .listUl3 {
+            left: -1px;
+            width: 125px;
+        }
+        .listUl3 li {
+            cursor: pointer;
+        }
+        .listUl3 li:hover {
+            background: #77A1B4;
+        }
+
     </style>
 </head>
 <body>
@@ -342,7 +396,7 @@
             <div class="control-module year-control">
                 <a href="" class="prev"><</a>
                 <div class="control">
-                    <i class="trigger"></i>
+                    <i class="trigger">∨</i>
                     <div class="field year">2016年</div>
                 </div>
                 <a href="" class="next">></a>
@@ -350,14 +404,14 @@
             <div class="control-module control-module month-control mouth-bar">
                 <a href="" class="prev"><</a>
                 <div class="control">
-                    <i class="trigger"></i>
+                    <i class="trigger">∨</i>
                     <div class="field month">4月</div>
                 </div>
                 <a href="" class="next">></a>
             </div>
             <div class="control-module control-module holiday-control holiday-bar">
                 <div class="control control-holiday">
-                    <i class="trigger"></i>
+                    <i class="trigger">∨</i>
                     <div class="field holiday">2016年节假日安排</div>
                 </div>
                 <ul class="list">
