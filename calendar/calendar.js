@@ -30,6 +30,12 @@ var control2 = monthControl.getElementsByClassName('control')[0];
 var holidayControl = document.getElementsByClassName('holiday-control')[0];
 var control3 = holidayControl.getElementsByClassName('control-holiday')[0];
 
+var prevYearBtn = document.getElementsByClassName('prev')[0];
+var nextYearBtn = document.getElementsByClassName('next')[0];
+
+var prevMonthBtn = document.getElementsByClassName('prev')[1];
+var nextMonthBtn = document.getElementsByClassName('next')[1];
+
 //返回今天
 var toToday = document.getElementsByClassName('btn-today')[0];
 
@@ -108,7 +114,6 @@ function showHidden3() {
         offOn3 = true;
     }
 }
-
 
 var yearBtn = control1.getElementsByClassName('year')[0];
 var trigger1 = control1.getElementsByClassName('trigger')[0];
