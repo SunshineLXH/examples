@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>simple calendar</title>
+    <style>
+        html, body, div, form, table, thead, tbody, tr, td, span, select {
+            margin: 0;
+            padding: 0;
+        }
+        .main {
+            border: 3px solid #ccc;
+            width: 405px;
+            margin: 50px auto;
+        }
+        .datetable {
+            width: 100%;
+            position: relative;
+        }
+        .thead, .tbody {
+            width: 100%;
+            position: relative;
+        }
+
+        .datetable td {
+            text-align: center;
+        }
+        .datetable thead {
+            background: #B0CC0B;
+        }
+        .datetable thead td {
+            padding: 10px 5px;
+            color: #fff;
+        }
+        .datetable thead td span {
+            padding: 0 5px;
+        }
+        .datetable tbody td {
+            padding: 5px 3px ;
+        }
+    </style>
+</head>
+<body>
+<form name="CLD" class="main">
+    <table class="datetable">
+        <thead>
+        <tr>
+            <td colspan="7">
+                <span>公历</span>
+                <select name="SY"></select>
+
+                <span>年</span>
+                <select name="SM"></select>
+
+                <span>月</span>
+                <span class="ganzi"></span>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>一</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+            <td>日</td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<script src="calendar.js"></script>
+</body>
+</html>
