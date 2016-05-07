@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>纯CSS的3D旋转进度条</title>
+    <link rel="stylesheet" href="Css3%203D%20Progress%20Bar.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="cube notrans">
+        <div class="front"><div class="progress">&nbsp;Loading...</div></div>
+        <div class="back"><div class="progress">&nbsp;Loading...</div></div>
+        <div class="top"><div class="progress">&nbsp;Loading...</div></div>
+        <div class="bottom"><div class="progress">&nbsp;Loading...</div></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</div>
+
+<div class="setting">
+    <input type="text" id="moveTo" value="55">%
+    <button class="demo-btn" onclick="setProgress(); return false;">设置进度条的值</button>
+    <input type="checkbox" id="trans" onchange="setTransparent(); ">设置为透明
+    <input type="checkbox" id="random" onchange="setRandom();">随机数值
+</div>
+
+<script src="http://libs.useso.com/js/jquery/2.1.0/jquery.min.js"></script>
+<script>
+    var tOut;
+
+    function randomVals() {
+        var ff = Math.floor(Math.random() * 100);
+        $('.progress').css({ 'width': ff + '%' });
+        $('#moveTo').val(ff);
+        tOut = setTimeout('randomVals()', 2500);
+    }
+
+    function setRandom() {
+        if ($('#random').is(':checked')) {
+            randomVals();
+        }
+        else {
+            clearTimeout(tOut);
+        }
+    }
+
+    function setProgress() {
+        if ($('#moveTo').val() > 100) $('#moveTo').val(100);
+        clearTimeout(tOut);
+        $('#random').attr('checked', false);
+        $('.progress').css({ 'width': $('#moveTo').val() + '%' });
+    }
+
+    function setTransparent() {
+        if ($('#trans').is(':checked')) {
+            $('.cube').removeClass('notrans');
+        }
+        else {
+            $('.cube').addClass('notrans');
+        }
+    }
+
+    $(window).load(function() {
+        setProgress();
+        setRandom();
+        setTransparent();
+    });
+</script>
+</body>
+</html>

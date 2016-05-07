@@ -1,0 +1,99 @@
+.wrap {
+    margin-top: 150px;
+    perspective: 1000px;
+    perspective-origin: 20% 20%;
+
+    /*change this to adjust the 3d bar tilting*/
+    transform: rotateZ(5deg) rotateY(5deg);
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    transition: width 2s ease;
+
+    color: #000;
+    font-family: verdana;
+    font-size: 24px;
+
+    border-right: solid 1px #bebebe;
+    background-size: 50px 50px;
+    /*blue stripes*/
+    background-image: linear-gradient(135deg, #49C5FB 25%, #FCDC70 25%, #FCDC70 50%, #49C5FB 50%, #49C5FB 75%, #FCDC70 75%, #FCDC70 100%);
+    animation: bganim 1s linear 1s infinite;
+}
+
+@keyframes bganim {
+    to {
+        background-position: 50px;
+    }
+}
+
+.cube {
+    margin: auto;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    width: 500px;
+    transform-style: preserve-3d;
+    animation: rotate 20s infinite linear;
+}
+
+/*rotating the 3d rectangle*/
+@keyframes rotate {
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
+.cube > div {
+    position: absolute;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    border: solid 1px #eee;
+}
+.cube.notrans > div {
+    background-size: 50px 50px;
+    /*gray stripes*/
+    background-image: linear-gradient(135deg, #ddd 25%, #eee 25%, #eee 50%, #ddd 50%,  #ddd 75%,#eee 75%, #eee 100%);
+    animation: beganim 1s linear 1s infinite;
+}
+
+.cube > .left, .cube > .right {
+    height: 50px;
+    width: 50px;
+}
+
+.front {
+    transform: translateZ(25px);
+}
+
+.back {
+    transform: translateZ(-25px) rotateX(180deg);
+}
+
+.top {
+    transform: rotateX(-270deg) translateY(-25px);
+    transform-origin: top center;
+}
+
+.bottom {
+    transform: rotateX(270deg) translateY(25px);
+    transform-origin: bottom center;
+}
+
+.left {
+    transform: rotateY(270deg) translateX(-25px);
+    transform-origin: center left;
+}
+
+.right {
+    transform: rotateY(-270deg) translateX(25px) translateZ(450px);
+    transform-origin: top right;
+}
+
+.setting {
+    text-align: center;
+    margin-top: 50px;
+}
