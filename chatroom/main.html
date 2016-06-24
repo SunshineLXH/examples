@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>聊天室主页_聊天室系统</title>
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </head>
+    <body>
+    	<div id="divMain">
+    		<div class="divtop">
+    			<div class="divL">
+    				<h3>聊天室</h3>
+    				<div class="divShow" id="divContent"></div>
+    			</div>
+    			<div class="divR">
+    				<h3>当前在线人员</h3>
+    				<div class="divShow" id="divOnLine"></div>
+    			</div>
+    		</div>
+    		<div class="divbottom">
+    			<table cellpadding="0" cellspacing="0">
+    				<tr><td colspan="2" id="divFace" class="pb"></td></tr>
+    				<tr>
+    					<td><textarea id="txtContent" cols="64" rows="3" class="txt"></textarea></td>
+    					<td class="pl"><input id="Button1" type="button" value="发送" class="btn" /></td>
+    				</tr>
+    				<tr><td colspan="2" class="pt">发送内容不能为空</td></tr>
+    			</table>
+    		</div>
+    		<span id="divMsg" class="clsTip"></span>
+    	</div>
+    </body>
+</html>
