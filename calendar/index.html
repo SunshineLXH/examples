@@ -126,7 +126,6 @@
 
         .year-control {
             width: 100px;
-            cursor: pointer;
         }
 
         .month-control {
@@ -222,7 +221,7 @@
             height: 61px;
             color: #999999;
         }
-        .lunar, .lunar-ganzhi, .other-info {
+        .lunar, .lunar-ganzi, .other-info {
             text-align: center;
         }
         .lunar {
@@ -311,9 +310,10 @@
             top: 1px;
             left: 1px;
             display: block;
-            height: 16px;
             overflow: hidden;
-            border: 1px solid #000;
+            width: 15px;
+            height: 15px;
+            font-size: 14px;
         }
         .solarDay {
             width: 100%;
@@ -332,13 +332,12 @@
             text-align: center;
             text-overflow: ellipsis;
             white-space: nowrap;
-            border: 1px solid #000;
         }
         .red {
             color: red;
         }
         .listUl1, .listUl2, .listUl3 {
-            -display: none;
+            display: none;
             background: #fff;
             border: 1px solid #C9CCCF;
             position: absolute;
@@ -386,6 +385,16 @@
         .listUl3 li:hover {
             background: #77A1B4;
         }
+        .td {
+            position: absolute;
+            z-index: 99;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #CC0000;
+            top: 4px;
+            left: 13px;
+            border-radius: 24px;
+        }
 
     </style>
 </head>
@@ -394,20 +403,20 @@
     <div class="top clearfix">
         <div class="control-bar">
             <div class="control-module year-control">
-                <a href="" class="prev"><</a>
+                <a href="javascript:void(0);" class="prev"><</a>
                 <div class="control">
                     <i class="trigger">∨</i>
                     <div class="field year">2016年</div>
                 </div>
-                <a href="" class="next">></a>
+                <a href="javascript:void(0);" class="next">></a>
             </div>
             <div class="control-module control-module month-control mouth-bar">
-                <a href="" class="prev"><</a>
+                <a href="javascript:void(0);" class="prev"><</a>
                 <div class="control">
                     <i class="trigger">∨</i>
                     <div class="field month">4月</div>
                 </div>
-                <a href="" class="next">></a>
+                <a href="javascript:void(0);" class="next">></a>
             </div>
             <div class="control-module control-module holiday-control holiday-bar">
                 <div class="control control-holiday">
@@ -443,11 +452,11 @@
                 <div class="date-show-panel"></div>
                 <div class="desc">
                     <div class="lunar"></div>
-                    <div class="lunar-ganzhi"></div>
+                    <div class="lunar-ganzi"></div>
                     <div class="other-info">
                         <span class="animal-year">
                             [
-                            <em class="animal"></em>
+                            <strong class="animal"></strong>
                             ]
                         </span>
                         <span class="astro"></span>
@@ -475,7 +484,7 @@
                 </div>
             </div>
             <div class="b-r-linktail">
-                <a class="historyday" href="" target="_blank">历史上的今天</a>
+                <a class="historyday">历史上的今天</a>
             </div>
             <div class="goupiao"></div>
         </div>
