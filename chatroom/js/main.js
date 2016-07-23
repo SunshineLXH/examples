@@ -2,10 +2,9 @@
 * @Author: SunshineLXH
 * @Date:   2016-06-23 19:38:12
 * @Last Modified by:   SunshineLXH
-* @Last Modified time: 2016-06-23 21:02:47
+* @Last Modified time: 2016-06-27 08:13:51
 */
 
-'use strict';
 $(function(){
 	//1.发送内容 验证是否为空，不为空，发送，否则，提示
 
@@ -31,7 +30,6 @@ $(function(){
 		$("#txtContent").val(strContent);
 	});
 
-
 	//3.定时获取最新聊天内容和当前在线的用户信息
 	AutoUpdContent();
 	var hander = setInterval("AutoUpdContent()", 5000); //执行定时获取函数
@@ -54,6 +52,32 @@ function InitFace(){
 		strHTML += "<img src='Face/" + i + ".gif' id='" + i +"'/>";
 	}
 	$("#divFace").html(strHTML);
+}
+
+//自定义返回聊天内容函数
+//参数data为返回的聊天内容数据
+function GetMessageList() {
+	$.ajax({
+		type: "GET",
+		url: "index.php",
+		data: "action=ChatList&d=" + new Date(),
+		success: function(data) {
+			$("#divContent").html(data);
+		}
+	});
+}
+
+//自定义返回在线人员函数
+//参数data为返回的在线人员数据
+function GetOnLineList() {
+	$.ajax({
+		type: "GET",
+		url: "index.php",
+		data: "action=OnLineList&d=" + new Date(),
+		success: function(data) {
+			$("#divOnLine").html(data);
+		}
+	});
 }
 
 //自定义定时执行返回聊天内容与在线人员函数

@@ -2,5 +2,27 @@
 * @Author: SunshineLXH
 * @Date:   2016-06-23 19:37:37
 * @Last Modified by:   SunshineLXH
-* @Last Modified time: 2016-06-23 19:37:37
+* @Last Modified time: 2016-06-27 08:13:47
 */
+body {
+	font-size: 11px;
+}
+h3 {
+	margin: 0;
+}
+.divShow {
+	border: solid 1px #ccc;
+	height: 300px;
+	padding: 5px;
+	font-size: 12px;
+	overflow-y: scroll;
+}
+#divMain {
+	border: solid 1px #ccc;
+}
+#divMain .divtop {
+	padding: 10px;
+}
+#divMain .divtop .divL {
+	float: left;
+}

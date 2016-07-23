@@ -1,0 +1,22 @@
+/*
+* @Author: SunshineLXH
+* @Date:   2016-07-15 20:38:33
+* @Last Modified by:   SunshineLXH
+* @Last Modified time: 2016-07-17 10:51:22
+*/
+nav {
+	background: rgb(248,248,248);
+}
+.avater {
+	border-radius: 30px;
+	width: 60px;
+	height: 60px;
+}
+li {
+	list-style: none;
+	display: inline-block;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}

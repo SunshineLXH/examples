@@ -1,0 +1,470 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>图</title>
+	<style>
+		body,ul,li,p,h2,h3,input{padding: 0; margin: 0}
+		li{list-style: none;}
+		img{border:none; vertical-align: top}
+		.wrap{width: 100%; height:2000%; margin: 0 auto; background: #f5f5f5;}
+		.buttonArea{width: 240px; border:1px solid #CCC; position: absolute; left: 840px; padding-top: 30px; background: #2b2b37;zoom:1;}
+		.buttonArea:after{content: "";display: block;clear: both;}
+		h2{text-align: center;font-size: 20px;font-size: 30px;line-height: 40px; color: white}
+		input{ width:100px; height: 40px; margin: 10px 10px; line-height: 40px; font-size: 20px;color: #fff;background: #449c45; border: none; outline: none;float: left;cursor: pointer;}
+		input:hover{ background: orange;}
+		.buttonArea img{width: 200px; height: 200px; margin:20px 20px ;transition:1s; border: none;opacity: 0;}
+		.dis{background: #CCC; cursor: auto;}
+		.dis:hover{background: #CCC}
+		.time{color: white; line-height: 40px; font-size: 24px; padding-left: 30px; margin-bottom:20px }
+		#box{border: 2px solid #000; position: relative; background: #000; margin-left: 200px;}
+		#box div{ position: absolute;left: 0;top: 0;overflow: hidden;z-index: 2}
+		#box .active{border: 2px dotted orange}
+		#box .black{background: black; z-index: 1}
+		.bg{width: 100%; height: 100%; background: #666; opacity: 0.8;position: absolute;left: 0;top:0;display: none; z-index: 10}
+		.alert li{width: 400px;height: 300px; border-radius: 5px; border: 1px solid #666;background: #fff; z-index: 100; position: absolute; left:30%; top: 20%;display: none; box-shadow: 4px 4px 2px #000;}
+		.alert li p{position: absolute; left: 95%; top:2%; font-weight: bold;font-size: 20px;cursor: pointer;}
+		.alert li h3{ font-size: 20px; line-height: 40px; font-weight:bold; padding-left: 20px;}
+		.alert li input{font-size: 16px; font-weight: bold;}
+		.alert li input{margin-left: 150px;}
+		.show{display: block;}
+		.dispear{display: none;}
+		.alert .show{display: block;}
+		
+	</style>
+	<script src="tools.js"></script>
+	<script>
+		window.onload=function load(){
+			var oWrap=$(".wrap")[0];
+			var oBox=$("#box");
+			var aInp=$("input",$("buttonArea")[0]);
+			var oImg=$("img",$("buttonArea")[0])[0];
+			var oBg=$(".bg")[0];
+			var aAle=$("li",$(".alert")[0]);
+			var picture=["shuang.jpg","yang.jpg","taohua.jpg","family.jpg"];
+			var difficult=[3,4,5,10];
+			var mode=0;
+			var picSele=0;
+			var diffSele=0;
+			var position,positionCorrect;
+			var HMS=[];
+			var oTime=$(".timeadd")[0];
+			render(difficult[0],picture[0],mode);
+			function render(num,pic,mode){
+				position=[];
+				positionCorrect=[];
+				oBox.innerHTML="";
+				for(i=0;i<num*num;i++){//加载
+					var le=i%num;
+					var wid=600/num;
+					var to=Math.floor(i/num);
+					var newDiv=document.createElement("div");
+					oWrap.style.height=document.documentElement.clientHeight+"px";
+					oBox.style.width=600+2*(num-1)+"px";
+					oBox.style.height=600+2*(num-1)+"px";
+					newDiv.style.width=wid+"px";
+					newDiv.style.height=wid+"px";
+					if(mode==0){
+						newDiv.style.background="url("+pic+") "+(-le*wid)+"px "+(-to*wid)+"px";
+					}else{
+						if(i!=(num*num-1)){
+							newDiv.style.background="url("+pic+") "+(-le*wid)+"px "+(-to*wid)+"px";
+						}else{
+							newDiv.className="black"
+						};
+					};
+					newDiv.style.left=le*(wid+2)+"px";
+					newDiv.style.top=to*(wid+2)+"px";
+					position.push({left:le*(wid+2),top:to*(wid+2)});
+					positionCorrect.push({left:le*(wid+2),top:to*(wid+2)});
+					oBox.appendChild(newDiv);
+				};
+				oImg.src=picture[picSele];
+				var aDiv=$("div",oBox);
+				var oBla=$(".black")[0];
+				aInp[0].onclick=function(){
+					oBg.className="bg show";
+					aAle[1].className="show";
+					var oP=$("p",aAle[1])[0];
+					oP.onclick=function(){
+						oBg.className="bg";
+						aAle[1].className="";
+					};
+					var aIn=$("input",aAle[1]);
+					for (var i = 0; i < aIn.length; i++) {
+						aIn[i].index=i;
+						aIn[i].onclick=function(){
+							oBg.className="bg";
+							aAle[1].className="";
+							mode=this.index;
+							render(difficult[diffSele],picture[picSele],mode);
+						};
+					};
+				}
+				aInp[1].onclick=function(){
+					oBg.className="bg show";
+					aAle[0].className="show";
+					var oP=$("p",aAle[0])[0];
+					oP.onclick=function(){
+						oBg.className="bg";
+						aAle[0].className="";
+					}
+					var aIn=$("input",aAle[0]);
+					for (var i = 0; i < aIn.length; i++) {
+						aIn[i].index=i;
+						aIn[i].onclick=function(){
+							oBg.className="bg";
+							aAle[0].className="";
+							diffSele=this.index;
+							render(difficult[diffSele],picture[picSele],mode);
+						};
+					};
+				}
+				aInp[2].onclick=function(){
+					for (var i = 0; i < aDiv.length; i++) {
+						if(aDiv[i].timer) return;
+					};
+					picSele=((picSele-1)>=0)?(picSele-1)%picture.length:picture.length-1;
+					render(difficult[diffSele],picture[picSele],mode);
+				};
+				aInp[3].onclick=function(){
+					for (var i = 0; i < aDiv.length; i++) {
+						if(aDiv[i].timer) return;
+					};
+					picSele=(picSele+1)%picture.length;
+					render(difficult[diffSele],picture[picSele],mode);
+				};
+				aInp[4].onclick=function(){
+					for (var i = 0; i < aDiv.length; i++) {
+						if(aDiv[i].timer) return;
+					};
+					if(mode==1){
+						order();
+						function order(){
+							var newD=[];
+							var m=0
+							for (var i = 0; i < aDiv.length-1; i++) {
+								newD.push(i);
+							};
+							newD.sort(function(){
+								return Math.random()-0.5;
+							});
+							console.log(newD)
+							for (var i = 1; i < newD.length; i++) {//计算矩阵逆序数
+								for (var j = 0; j < i; j++) {
+									if(newD[j]>newD[i]){
+										m++;
+									};
+								};
+							};
+							console.log(m)
+							if(m%2==0){
+								for (var i = 0; i < position.length-1; i++) {
+									position[i]=positionCorrect[newD[i]];
+								};
+							}else{
+								order();
+							}
+						}
+					}else{
+						position.sort(function(){
+							return Math.random()-0.5;
+						});
+					}
+					for(var i=0;i<aDiv.length;i++){//加载
+						doMoveIntime(aDiv[i],[{attr:"left",target:position[i].left},{attr:"top",target:position[i].top}],30,600);
+					};
+					var ago=new Date();
+					oWrap.timerA=setInterval(function(){
+						HMS=timeAdd(ago);
+						oTime.innerHTML=HMS.H+":"+HMS.M+":"+HMS.S+"."+HMS.MS;
+					},10);
+					if(mode==1){
+						for(i=0;i<aDiv.length;i++){
+							aDiv[i].index=i;
+							aDiv[i].onmousedown=null;
+							cli(aDiv[i]);
+						};
+					}else{
+						for(i=0;i<aDiv.length;i++){
+							aDiv[i].index=i;
+							aDiv[i].onclick=null;
+							drag(aDiv[i]);
+						};
+					}
+					for (var i = 0; i < 5; i++) {
+						aInp[i].className="dis";
+						aInp[i].disabled=true;
+					};
+					aInp[5].className="";
+					aInp[5].disabled=false;
+				};
+				aInp[5].onclick=function(){
+					for (var i = 0; i < aDiv.length; i++) {
+						if(aDiv[i].timer) return;
+					};
+					clearInterval(oWrap.timerA);
+					oTime.innerHTML="00:00:00";
+					render(difficult[diffSele],picture[picSele],mode);
+					for (var i = 0; i < 5; i++) {
+						aInp[i].className="";
+						aInp[i].disabled=false;
+					};
+					aInp[5].className="dis";
+					aInp[5].disabled=true;
+				}
+				aInp[6].onclick=function(){
+					aInp[6].className="dis";
+					aInp[7].className="show";
+					oImg.style.opacity=1;
+				}
+				aInp[7].onclick=function(){
+					aInp[6].className="";
+					aInp[7].className="dispear";
+					oImg.style.opacity=0;
+				}
+				function drag(element){
+					element.onmousedown=function(ev){
+						for (var i = 0; i < aDiv.length; i++) {
+							if(aDiv[i].timer) return;
+						};
+						var closeObj;
+						var hitArr;
+						if(element.setCapture){
+							element.setCapture();
+						}
+						element.style.zIndex=10;
+						e=ev||event;
+						var x=e.clientX-element.offsetLeft;
+						var y=e.clientY-element.offsetTop;
+						document.onmousemove=function(ev){
+							hitArr=[];
+							closeObj=null;
+							var min=Infinity;
+							e2=ev||event;
+							var l=e2.clientX-x;
+							var t=e2.clientY-y;
+							if(l<0){
+								l=0;
+							}
+							if(l>oBox.clientWidth-element.offsetWidth){
+								l=oBox.clientWidth-element.offsetWidth;
+							}
+							if(t<0){
+								t=0;
+							}
+							if(t>oBox.clientHeight-element.offsetHeight){
+								t=oBox.clientHeight-element.offsetHeight;
+							}
+							element.style.left=l+"px";
+							element.style.top=t+"px";
+							for (var i = 0; i < aDiv.length; i++) {
+								if(element!==aDiv[i]){
+									aDiv[i].className="";
+									aDiv[i].style.left=position[i].left+"px";
+									aDiv[i].style.top=position[i].top+"px";
+									if(hit(element,aDiv[i])){
+										hitArr.push(aDiv[i]);
+									};
+								};
+							};
+							for (var j = 0; j < hitArr.length; j++) {
+								var left =hitArr[j].offsetLeft - l;
+								var top =hitArr[j].offsetTop - t;
+								var distance=Math.sqrt( left*left + top*top );
+								 if(distance<min){
+								 	min=distance;
+								 	closeObj=hitArr[j];
+								 };
+							};
+							if(closeObj){
+								closeObj.className="active";
+								closeObj.style.left=closeObj.offsetLeft-2+"px";
+								closeObj.style.top=closeObj.offsetTop-2+"px";
+							}
+						};
+						document.onmouseup=function(){
+							document.onmousemove=null;
+							document.onmouseup=null;
+							if(closeObj){
+								closeObj.style.zIndex=10;
+								closeObj.className="none";
+								position[closeObj.index]=[position[element.index],position[element.index]=position[closeObj.index]][0];
+								doMoveIntime(closeObj,[{attr:"left",target:position[closeObj.index].left},{attr:"top",target:position[closeObj.index].top}],30,400,callBack);
+							}
+							doMoveIntime(element,[{attr:"left",target:position[element.index].left},{attr:"top",target:position[element.index].top}],30,300);
+							function callBack(){
+								element.style.zIndex=2;
+								closeObj.style.zIndex=2;
+								for (var i = 0; i < position.length; i++) {
+									if(position[i].left!=positionCorrect[i].left||position[i].top!=positionCorrect[i].top) return;
+								};
+								clearInterval(oWrap.timerA);
+								var oTotalTime=$(".totalTime",aAle[3])[0];
+								oTotalTime.innerHTML=oTime.innerHTML+"秒";
+								oBg.className="bg show";
+								aAle[2].className="show";
+								var aIn=$("input",aAle[2]);
+								aIn[0].onclick=function(){
+									oTime.innerHTML="00:00:00";
+									oBg.className="bg";
+									aAle[2].className="";
+									position.sort(function(){
+										return Math.random()-0.5;
+									});
+									for(var i=0;i<aDiv.length;i++){//加载
+										doMoveIntime(aDiv[i],[{attr:"left",target:position[i].left},{attr:"top",target:position[i].top}],30,600);
+									};
+									var ago=new Date();
+									oWrap.timerA=setInterval(function(){
+										HMS=timeAdd(ago);
+										oTime.innerHTML=HMS.H+":"+HMS.M+":"+HMS.S+"."+HMS.MS;
+									},10);
+								};
+								aIn[1].onclick=function(){
+									oTime.innerHTML="00:00:00";
+									oBg.className="bg";
+									aAle[2].className="";
+									render(difficult[diffSele],picture[picSele],mode);
+									for (var i = 0; i < 5; i++) {
+										aInp[i].className="";
+										aInp[i].disabled=false;
+									};
+									aInp[5].className="dis";
+									aInp[5].disabled=true;
+								};
+							}
+							if(element.releaseCapture){
+								element.releaseCapture();
+							};
+						};
+						return false;
+					};
+				};
+				function cli(element){
+					element.onclick=function(){
+						for (var i = 0; i < aDiv.length; i++) {
+							if(aDiv[i].timer) return
+						};
+						if(((element.offsetLeft==oBla.offsetLeft)&&(Math.abs(element.offsetTop-oBla.offsetTop)==(wid+2)))||((element.offsetTop==oBla.offsetTop)&&(Math.abs(element.offsetLeft-oBla.offsetLeft)==(wid+2)))){
+							position[oBla.index]=[position[element.index],position[element.index]=position[oBla.index]][0];
+							doMoveIntime(oBla,[{attr:"left",target:position[oBla.index].left},{attr:"top",target:position[oBla.index].top}],30,200);
+							doMoveIntime(element,[{attr:"left",target:position[element.index].left},{attr:"top",target:position[element.index].top}],30,200,callBack);
+						}
+						function callBack(){
+							for (var i = 0; i < position.length; i++) {
+								if(position[i].left!=positionCorrect[i].left||position[i].top!=positionCorrect[i].top) return;
+							};
+							clearInterval(oWrap.timerA);
+							var oTotalTime=$(".totalTime",aAle[3])[0];
+							oTotalTime.innerHTML=oTime.innerHTML+"秒";
+							oBg.className="bg show";
+							aAle[2].className="show";
+							var aIn=$("input",aAle[2]);
+							aIn[0].onclick=function(){
+								oTime.innerHTML="00:00:00";
+								oBg.className="bg";
+								aAle[2].className="";
+								if(mode==1){
+									order();
+									function order(){
+										var newD=[];
+										var m=0;
+										for (var i = 0; i < aDiv.length-1; i++) {
+											newD.push(i);
+										};
+										newD.sort(function(){
+											return Math.random()-0.5;
+										});
+										console.log(newD)
+										for (var i = 1; i < newD.length; i++) {//计算矩阵逆序数
+											for (var j = 0; j < i; j++) {
+												if(newD[j]>newD[i]){
+													m++;
+												};
+											};
+										};
+										console.log(m)
+										if(m%2==0){
+											for (var i = 0; i < position.length-1; i++) {
+												position[i]=positionCorrect[newD[i]];
+											};
+										}else{
+											order();
+										}
+									}
+								}else{
+									position.sort(function(){
+										return Math.random()-0.5;
+									});
+								}
+								for(i=0;i<aDiv.length;i++){//加载
+									doMoveIntime(aDiv[i],[{attr:"left",target:position[i].left},{attr:"top",target:position[i].top}],30,600);
+								};
+								var ago=new Date();
+								oWrap.timerA=setInterval(function(){
+									HMS=timeAdd(ago);
+									oTime.innerHTML=HMS.H+":"+HMS.M+":"+HMS.S+"."+HMS.MS;
+								},10);
+							};
+							aIn[1].onclick=function(){
+								oBg.className="bg";
+								aAle[2].className="";
+								render(difficult[diffSele],picture[picSele],mode);
+								for (var i = 0; i < 5; i++) {
+									aInp[i].className="";
+									aInp[i].disabled=false;
+								};
+								aInp[5].className="dis";
+								aInp[5].disabled=true;
+								oTime.innerHTML="00:00:00";
+							};
+						};
+					};
+				};
+			};
+		};
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="buttonArea">
+			<h2>趣味拼图</h2>
+			<input type="button" value="模式选择" />
+			<input type="button" value="难度选择" />
+			<input type="button" value="上张图片"/>
+			<input type="button" value="下张图片"/>
+			<input type="button"  value="开始游戏"/>
+			<input type="button" class="dis" value="放弃">
+			<div class="time">用时:<span class="timeadd">00:00:00</span></div>
+			<input type="button"  value="显示提示"/>
+			<input type="button"  class="dispear"value="隐藏提示">
+			<img src="">
+		</div>
+		<div id="box"></div>
+	</div>
+	<div class="bg"></div>
+	<ul class="alert">
+		<li class="diff">
+			<p>X</p>
+			<h3>请选择游戏难度</h3>
+			<input type="button" value="初级：3X3" />
+			<input type="button" value="中级：4X4" />
+			<input type="button" value="高级：5X5" />
+			<input type="button" value="变态：10X10" />
+		</li>
+		<li class="mode">
+			<p>X</p>
+			<h3>请选择游戏模式</h3>
+			<input type="button" value="任意拖拽" />
+			<input type="button" value="移向空白" />
+		</li>
+		<li class="suc">
+			<h3>恭喜您，拼图成功，用时<span class="totalTime"></span></h3>
+			<input type="button" value="再来一把" />
+			<input type="button" value="换个玩法" />
+		</li>
+	</ul>
+</body>
+</html>
