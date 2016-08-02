@@ -2,7 +2,7 @@
 * @Author: SunshineLXH
 * @Date:   2016-07-29 10:54:37
 * @Last Modified by:   SunshineLXH
-* @Last Modified time: 2016-08-01 21:50:53
+* @Last Modified time: 2016-08-02 00:37:43
 */
 
 /**
@@ -199,7 +199,7 @@ header .main ul li a:active {
 		border: none;
 	}
 	header .main ul li a {
-		padding: 0 1.5rem;
+		padding: 0 1rem;
 	}
 }
 
@@ -290,16 +290,12 @@ header .main ul li a:active {
 }
 
 @media only screen and (min-width: 30em) and (max-width: 50em) {
-	.transaction {
-		padding: .5rem 0;
+	.trans-data {
+		padding: 1rem 0;
+	}
+	.trans-report a{ 
 		font-size: 1.2rem;
-	}
-	.trans-data span.trans-money {
-		margin: 0;
-		padding: 0;
-	}
-	.trans-report a {
-		padding: 0;
+		padding: 1rem 0;
 	}
 }
 
@@ -401,13 +397,14 @@ header .main ul li a:active {
 	line-height: 3rem;
 	background-color: #fff;
 	box-shadow: 0 0 4px #ccc;
+	box-sizing: border-box;
 }
 
 .notice a {
 	display: inline-block;
 	float: left;
 	width: 70%;
-	margin-left: 2rem;
+	margin-left: 1rem;
 	text-align: none;
 }
 
@@ -429,10 +426,16 @@ header .main ul li a:active {
 }
 
 .notice a.more {
-	float: right;
+	/*float: right;*/
 	width: auto;
-	margin-right: 2rem;
+	margin-right: 1rem;
 	color: #ff9900;
+}
+
+@media only screen and (min-width: 30em) and (max-width: 50em) {
+	.notice a:first-child:before {
+		content: '最新公告：';
+	}
 }
 
 @media only screen and (max-width: 30em) {
