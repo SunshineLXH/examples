@@ -1,0 +1,165 @@
+/*
+* @Author: 12400
+* @Date:   2016-08-17 15:24:07
+* @Last Modified by:   12400
+* @Last Modified time: 2016-08-18 17:49:20
+*/
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Lato #22c3aa'), local('Lato-#22c3aa'), url('../static/css/font-awesome/fonts/fontawesome-webfont.woff') format('woff');
+}
+html, body {
+	width: 100%;
+	height: 100%;
+	font-size: 1rem;
+	font-family: 'Lato', "Lucida Granda", Lucida Sans Unicode, Hiragino Sans GB, 'Microsoft YaHei', WenQuanYi Micro Hei, Verdana, Aril, sans-serif;
+}
+body {
+	text-align: center;
+	/*filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6699FF', endColorstr='#6699FF'); /*  IE */*/
+	/*background-image:linear-gradient(bottom, #6699FF 0%, #6699FF 100%);*/
+	/*background-image:-o-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);*/
+	/*background-image:-moz-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);*/
+	/*background-image:-webkit-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);*/
+	/*background-image:-ms-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);*/
+	
+}
+.search-mask {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	/*text-align: center;*/
+
+	/*border: 2px solid blue;*/
+
+}
+.search-box {
+	width: 100%;
+	max-width: 500px;
+	height: 400px;
+	position: absolute;
+	top: calc(50% - 200px);
+	left: calc(50% - 250px);
+	background: rgba(255,255,255,.3);
+	border: 1px solid transparent;
+	border-radius: 10px;
+	box-shadow: 5px 5px 20px #bbb;
+
+	border: 2px solid lightgray;
+}
+
+.thread {
+	width: 60px;
+	height: 10px;
+	border: 2px solid #0f0;
+	margin: 30px auto;
+	border-radius: 5px;
+	background: rgba(90,245,128,.7);
+}
+.page-header h1 {
+	text-align: center;
+	margin: 30px auto;
+}
+
+.search-input, .search-bar {
+	height: 50px; 
+	line-height: 50px;
+	border: 1px solid #ccc;
+	vertical-align: bottom;
+	display: inline-block;
+}
+.search-input {
+	width: 300px;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	padding: 10px;
+	box-sizing: border-box;
+	font-size: 20px;
+}
+.search-bar {
+	width: 100px;
+	font-size: 20px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	background-color: #3388FF;
+	color: #fff;
+	border: 1px solid #3388FF;
+}
+.small-center-box {
+	box-shadow: 0 0 5px #888;
+	background-image: linear-gradient(rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 100%) !important;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 74px;
+	line-height: 74px;
+	z-index: 2;
+	width: 100%;
+	min-width: 1000px;
+	border-bottom: 1px solid #ebebeb;
+	display: none;
+	padding: 10px;
+}
+.small-search {
+	height: 50px;
+	min-height: 50px;
+	width: 600px;
+	border: 2px solid #d1a;
+	position: relative;
+	z-index: 3;
+	margin-left: 20px;
+}
+.more-bar {
+	width: 90px;
+	height: 45px;
+	border: 2px solid #f00;
+	position: absolute;
+	left: calc(50% - 45px);
+	bottom: 0;
+	-padding-top: 20px;
+	cursor: pointer;
+	color: #999;
+}
+.load-text {
+	display: none;
+}
+.rect {
+	height: 32px;
+	width: 57px;
+	margin: 10px auto 0 auto;
+	border: 0;
+	background: url(../images/more_up_bg_83c39341.png);
+	position: relative;
+}
+.animate-arrow {
+	width: 22px;
+	height: 13px;
+	position: relative;
+	margin: 0 auto;
+	background: url(../images/card_setts_fdb17359.png) no-repeat -114px -2px;
+	transform: translate3d(0px,20px,0px);
+	transition: transform 2s ease-in 0s;
+	animation: arrowmove 2s infinite ease-in-out;
+	-webkit-animation: arrowmove 2s infinite;
+}
+
+-webkit-@keyframes arrowmove {
+	form {
+		top: 8px;
+	}
+	to {
+		top: 20px;
+	}
+}
+
+.more-content {
+	width: 100%;
+	height: 1500px;
+	/*border: 2px solid #fca;*/
+	display: none;
+	float: left;
+	margin-top: 500px;
+}
